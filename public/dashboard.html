@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - SAT Practice System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span>🎓</span> SAT Practice Portal
+        </div>
+        <div class="user-menu">
+            <span class="username-display" id="userWelcome">Hello, Student</span>
+            <button class="btn-outline" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Welcome Message -->
+        <div class="welcome-section">
+            <h2>Your Dashboard</h2>
+            <p style="color: var(--text-muted); margin-top: 4px;">Track your preparation and progress</p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="label">Tests Completed</span>
+                <span class="value" id="statCompleted">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="label">Average Score</span>
+                <span class="value" id="statAvgScore">0%</span>
+            </div>
+            <div class="stat-card math">
+                <span class="label">Math Average</span>
+                <span class="value" id="statMathScore">0%</span>
+            </div>
+            <div class="stat-card reading">
+                <span class="label">Reading Average</span>
+                <span class="value" id="statReadingScore">0%</span>
+            </div>
+        </div>
+        <!-- Analytics & Progress charts -->
+        <div class="dashboard-layout">
+            <!-- Progress Trend Chart -->
+            <div class="chart-card">
+                <h3>Recent Score History</h3>
+                <div class="trend-chart-container" id="trendChartContainer">
+                    <div style="text-align: center; color: var(--text-muted); padding-top: 80px; font-size: 14px;">
+                        Complete practice tests to build your trend chart!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subject & Difficulty Mastery -->
+            <div class="chart-card">
+                <h3>Skill Mastery Breakdown</h3>
+                
+                <!-- Mastery Rings (Math & Reading) -->
+                <div class="mastery-rings-container">
+                    <div class="ring-item">
+                        <svg class="ring-svg">
+                            <defs>
+                                <linearGradient id="mathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#4f46e5" />
+                                    <stop offset="100%" stop-color="#818cf8" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="ring-bg" cx="47.5" cy="47.5" r="40" />
+                            <circle class="ring-fill math-ring" id="mathRingFill" cx="47.5" cy="47.5" r="40" style="stroke: url(#mathGradient);" />
+                            <text class="ring-value" id="mathRingVal" x="47.5" y="47.5">0%</text>
+                        </svg>
+                        <span class="ring-label">SAT Math</span>
+                    </div>
+                    <div class="ring-item">
+                        <svg class="ring-svg">
+                            <defs>
+                                <linearGradient id="readingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#10b981" />
+                                    <stop offset="100%" stop-color="#34d399" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="ring-bg" cx="47.5" cy="47.5" r="40" />
+                            <circle class="ring-fill reading-ring" id="readingRingFill" cx="47.5" cy="47.5" r="40" style="stroke: url(#readingGradient);" />
+                            <text class="ring-value" id="readingRingVal" x="47.5" y="47.5">0%</text>
+                        </svg>
+                        <span class="ring-label">SAT Reading</span>
+                    </div>
+                </div>
+
+                <!-- Difficulty level breakdown bars -->
+                <div class="diff-bars-container">
+                    <div class="diff-row">
+                        <span class="diff-lbl">Easy</span>
+                        <div class="diff-track">
+                            <div class="diff-fill easy" id="easyBarFill" style="width: 0%;"></div>
+                        </div>
+                        <span class="diff-pct" id="easyPct">0%</span>
+                    </div>
+                    <div class="diff-row">
+                        <span class="diff-lbl">Medium</span>
+                        <div class="diff-track">
+                            <div class="diff-fill medium" id="mediumBarFill" style="width: 0%;"></div>
+                        </div>
+                        <span class="diff-pct" id="mediumPct">0%</span>
+                    </div>
+                    <div class="diff-row">
+                        <span class="diff-lbl">Hard</span>
+                        <div class="diff-track">
+                            <div class="diff-fill hard" id="hardBarFill" style="width: 0%;"></div>
+                        </div>
+                        <span class="diff-pct" id="hardPct">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Practice Section Selection -->
+        <div class="test-selection-section">
+            <h3>Start Practice or Exam</h3>
+            <div class="test-cards">
+                <div class="test-card">
+                    <h4>Custom Practice</h4>
+                    <p>Select a subject (Math or Reading) and difficulty level. Take your time to review answers with detailed explanations.</p>
+                    <button class="btn-primary" onclick="openSessionModal('Practice')">Configure Practice Session</button>
+                </div>
+                <div class="test-card">
+                    <h4>Mock Exam</h4>
+                    <p>Simulate the real digital SAT exam. Take a timed test with mixed subjects and a strict countdown timer.</p>
+                    <button class="btn-primary" onclick="openSessionModal('Mock Exam')" style="background-color: var(--success);">Start Mock Exam</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Log -->
+        <div class="history-section">
+            <h3>Previous Test History</h3>
+            <div class="history-table-container">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Date Completed</th>
+                            <th>Mode</th>
+                            <th>Difficulty</th>
+                            <th>Time Taken</th>
+                            <th>Correct / Total</th>
+                            <th>Percentage Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody">
+                        <tr>
+                            <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px;">
+                                No tests completed yet. Select an option above to get started!
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Configuration Modal -->
+    <div class="modal-overlay" id="sessionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Configure Session</h3>
+                <button class="close-btn" onclick="closeSessionModal()">&times;</button>
+            </div>
+            <form id="sessionConfigForm" onsubmit="handleStartSession(event)">
+                <input type="hidden" id="configMode" value="Practice">
+                
+                <div class="select-group">
+                    <label for="configSubject">Subject</label>
+                    <select id="configSubject" class="custom-select" onchange="handleSubjectChange()">
+                        <option value="Math">SAT Math</option>
+                        <option value="Reading">SAT Reading</option>
+                        <option value="Mixed" id="optMixedSubject">Mixed (Math & Reading)</option>
+                    </select>
+                </div>
+
+                <div class="select-group" id="difficultyGroup">
+                    <label for="configDifficulty">Difficulty Level</label>
+                    <select id="configDifficulty" class="custom-select">
+                        <option value="Mixed">Mixed Difficulties</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
+
+                <div class="select-group">
+                    <label for="configTime">Testing Time</label>
+                    <select id="configTime" class="custom-select">
+                        <option value="0">Untimed (Practice Mode)</option>
+                        <option value="5">5 Minutes (Speed Run)</option>
+                        <option value="10">10 Minutes (Standard Practice)</option>
+                        <option value="15" id="opt15Min">15 Minutes (Standard Mock)</option>
+                        <option value="20">20 Minutes (Extended Mock)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary" style="margin-top: 10px;">Launch Session</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

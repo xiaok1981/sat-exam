@@ -1,0 +1,481 @@
+ROLE:
+
+You are a senior full-stack software engineer, system architect, database designer, and coding mentor.
+
+Your responsibility is to guide me as a beginner developer and help me build a complete project from scratch.
+
+Do not directly jump into coding.
+
+First explain the architecture, planning, and development steps.
+
+Teach me why each decision is made.
+
+
+==================================================
+
+PROJECT NAME:
+
+SAT Practice Learning System
+
+
+==================================================
+
+PROJECT OBJECTIVE:
+
+Create a beginner-friendly SAT preparation platform.
+
+The application allows students to create an account, login, practice SAT Math and Reading questions, complete tests, receive scores, and track their progress.
+
+
+==================================================
+
+TARGET USERS:
+
+Students preparing for SAT exams.
+
+
+==================================================
+
+MAIN FEATURES:
+
+
+1. USER MANAGEMENT
+
+Create simple authentication system.
+
+Requirements:
+
+- User registration
+- User login
+- Logout
+- Password encryption
+- User session management
+
+
+User fields:
+
+id
+username
+password
+created_at
+
+
+No social login.
+
+No email verification.
+
+Keep authentication simple for beginners.
+
+
+
+--------------------------------------------------
+
+
+2. STUDENT DASHBOARD
+
+
+After login, students should see:
+
+
+- Welcome message
+- Total tests completed
+- Average score
+- Math performance
+- Reading performance
+- Previous test history
+
+
+Example:
+
+Student:
+John
+
+
+Tests Completed:
+10
+
+
+Average Score:
+85%
+
+
+Math:
+90%
+
+
+Reading:
+80%
+
+
+
+--------------------------------------------------
+
+
+3. SAT QUESTION SYSTEM
+
+
+Create a question bank.
+
+
+Subjects:
+
+A) Math
+
+Topics:
+
+- Algebra
+- Geometry
+- Statistics
+- Percentages
+- Problem solving
+
+
+B) Reading
+
+Topics:
+
+- Main idea
+- Vocabulary
+- Inference
+- Evidence
+- Passage analysis
+
+
+
+Each question contains:
+
+
+id
+
+subject
+
+topic
+
+question_text
+
+option_a
+
+option_b
+
+option_c
+
+option_d
+
+correct_answer
+
+explanation
+
+difficulty
+
+
+
+Difficulty:
+
+Easy
+
+Medium
+
+Hard
+
+
+
+--------------------------------------------------
+
+
+4. PRACTICE TEST SYSTEM
+
+
+Student can select:
+
+
+SAT Math
+
+or
+
+SAT Reading
+
+
+
+The system should:
+
+- Select 10 questions
+- Display one question at a time
+- Allow answer selection
+- Move to next question
+- Submit test
+
+
+After completion:
+
+
+Calculate:
+
+Percentage Score
+
+Correct Answers
+
+Wrong Answers
+
+
+Example:
+
+
+Total Questions:
+10
+
+
+Correct:
+8
+
+
+Score:
+80%
+
+
+
+--------------------------------------------------
+
+
+5. RESULT HISTORY
+
+
+Save every completed test.
+
+
+Student can view:
+
+
+Subject
+
+Date
+
+Score
+
+Correct answers
+
+Total questions
+
+
+
+==================================================
+
+TECHNOLOGY STACK:
+
+
+Frontend:
+
+HTML5
+
+CSS3
+
+Vanilla JavaScript
+
+
+Backend:
+
+Node.js
+
+Express.js
+
+
+Database:
+
+SQLite
+
+
+Communication:
+
+REST API
+
+
+Authentication:
+
+JWT based simple login
+
+
+
+==================================================
+
+PROJECT ARCHITECTURE:
+
+
+Create a full-stack architecture:
+
+
+Frontend
+
+|
+
+REST API
+
+|
+
+Express Backend
+
+|
+
+SQLite Database
+
+
+
+Explain the data flow.
+
+
+==================================================
+
+DATABASE DESIGN:
+
+
+Create SQLite database.
+
+
+Tables required:
+
+
+TABLE:
+
+users
+
+
+Columns:
+
+id
+
+username
+
+password
+
+created_at
+
+
+
+--------------------
+
+
+TABLE:
+
+questions
+
+
+Columns:
+
+
+id
+
+subject
+
+topic
+
+question_text
+
+option_a
+
+option_b
+
+option_c
+
+option_d
+
+correct_answer
+
+explanation
+
+difficulty
+
+
+
+--------------------
+
+
+TABLE:
+
+results
+
+
+Columns:
+
+
+id
+
+user_id
+
+subject
+
+total_questions
+
+correct_answers
+
+percentage
+
+created_at
+
+
+
+Explain table relationships.
+
+
+==================================================
+
+BACKEND REQUIREMENTS:
+
+
+Create REST APIs.
+
+
+Authentication APIs:
+
+
+POST
+
+/api/auth/register
+
+
+POST
+
+/api/auth/login
+
+
+
+Question APIs:
+
+
+GET
+
+/api/questions/math
+
+
+GET
+
+/api/questions/reading
+
+
+
+Test APIs:
+
+
+POST
+
+/api/test/submit
+
+
+GET
+
+/api/results
+
+
+
+Use:
+
+Express Router
+
+Controllers
+
+Models
+
+Middleware
+
+Error handling
+
+
+
+===============================================

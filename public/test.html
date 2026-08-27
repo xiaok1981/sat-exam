@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Test - SAT Practice System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span>🎓</span> SAT Practice Portal
+        </div>
+        <div class="user-menu">
+            <span class="username-display" id="userWelcome">Hello, Student</span>
+            <div id="timerContainer" style="display: none; align-items: center;">
+                <div class="timer-pill" id="timerPill">
+                    <span>⏱️</span> <span id="timerCountdown">--:--</span>
+                </div>
+            </div>
+            <button class="btn-outline" onclick="backToDashboard()">Back to Dashboard</button>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Test-taking layout -->
+        <div id="testArea" class="test-layout">
+            <div class="test-progress-bar">
+                <div id="progressBarFill" class="test-progress-fill"></div>
+            </div>
+
+            <!-- Question Navigation Board -->
+            <div class="navigation-drawer">
+                <div class="navigation-drawer-title">Questions Map</div>
+                <div class="nav-grid" id="questionNavGrid">
+                    <!-- Dynamic nav buttons: 1, 2, 3, etc. -->
+                </div>
+            </div>
+
+            <div class="test-header">
+                <h2 id="testSubjectTitle">SAT Math Test</h2>
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <button class="btn-flag" id="flagBtn" onclick="toggleFlagActiveQuestion()">
+                        <span>🚩</span> Flag
+                    </button>
+                    <div id="questionNumberIndicator" style="font-weight: 700; color: var(--text-muted);">Question 1 of 10</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text" id="questionText">
+                    Loading questions...
+                </div>
+
+                <div class="options-container">
+                    <div id="optA" class="option-box" onclick="selectOption('A')">
+                        <span class="option-letter">A</span>
+                        <span id="optAText" class="option-content">Option A</span>
+                    </div>
+                    <div id="optB" class="option-box" onclick="selectOption('B')">
+                        <span class="option-letter">B</span>
+                        <span id="optBText" class="option-content">Option B</span>
+                    </div>
+                    <div id="optC" class="option-box" onclick="selectOption('C')">
+                        <span class="option-letter">C</span>
+                        <span id="optCText" class="option-content">Option C</span>
+                    </div>
+                    <div id="optD" class="option-box" onclick="selectOption('D')">
+                        <span class="option-letter">D</span>
+                        <span id="optDText" class="option-content">Option D</span>
+                    </div>
+                </div>
+
+                <div class="test-controls">
+                    <button id="prevBtn" class="btn-secondary" onclick="prevQuestion()" disabled>Previous</button>
+                    <button id="nextBtn" class="btn-primary" onclick="nextQuestion()" style="width: auto; padding: 12px 30px;">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Score Results display layout -->
+        <div id="resultsArea" class="test-layout" style="display: none;">
+            <div class="results-card">
+                <h2>Practice Test Completed!</h2>
+                <p style="color: var(--text-muted); margin-top: 6px;">Here is your score evaluation</p>
+
+                <div class="results-score-circle" id="resultScoreCircle">
+                    80%
+                </div>
+
+                <div class="results-stats-row">
+                    <div class="results-stat-item">
+                        <div class="val correct" id="resultCorrectVal">8</div>
+                        <div class="lbl">Correct Answers</div>
+                    </div>
+                    <div class="results-stat-item">
+                        <div class="val wrong" id="resultWrongVal">2</div>
+                        <div class="lbl">Incorrect Answers</div>
+                    </div>
+                </div>
+
+                <!-- Topic Analysis Breakdown -->
+                <div style="margin-bottom: 35px; text-align: left;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: #334155; margin-bottom: 12px; border-bottom: 1.5px solid var(--border-color); padding-bottom: 6px;">Topic Performance Breakdown</h3>
+                    <div class="topic-analysis-grid" id="topicPerformanceGrid">
+                        <!-- Filled dynamically by JavaScript -->
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="backToDashboard()" style="max-width: 250px; margin: 0 auto 30px auto; display: block;">Return to Dashboard</button>
+
+                <!-- Detailed Explanation reviews -->
+                <div class="review-section">
+                    <h3>Review Questions & Explanations</h3>
+                    <div id="reviewCardsContainer">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/test.js"></script>
+</body>
+</html>

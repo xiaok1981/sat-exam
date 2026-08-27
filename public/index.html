@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register - SAT Practice System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+
+    <div class="auth-container">
+        <div class="auth-header">
+            <h1>SAT Prep Portal</h1>
+            <p>Master your SAT Math & Reading skills</p>
+        </div>
+
+        <div class="auth-tabs">
+            <button id="loginTabBtn" class="auth-tab active" onclick="switchTab('login')">Login</button>
+            <button id="registerTabBtn" class="auth-tab" onclick="switchTab('register')">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="auth-form" onsubmit="handleLoginSubmit(event)">
+            <div class="form-group">
+                <label for="loginUsername">Username</label>
+                <input type="text" id="loginUsername" placeholder="Enter your username" required autocomplete="username">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn-primary">Sign In</button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="registerForm" class="auth-form" onsubmit="handleRegisterSubmit(event)" style="display: none;">
+            <div class="form-group">
+                <label for="registerUsername">Choose Username</label>
+                <input type="text" id="registerUsername" placeholder="e.g. JohnDoe" required autocomplete="username">
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" placeholder="Minimum 6 characters" required autocomplete="new-password" minlength="6">
+            </div>
+            <button type="submit" class="btn-primary">Create Account</button>
+        </form>
+
+        <!-- Error display -->
+        <div id="authError" class="error-message"></div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
